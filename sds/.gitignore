@@ -1,10 +1,44 @@
-# Large geospatial data files
+# ==========================================
+# Large Geospatial & Data Files
+# ==========================================
+
+# Geospatial formats
 *.geojson
 *.gpkg
 *.tif
 *.tiff
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
 
-# Cache directories
+# Raster/gridded data
+*.nc
+*.grd
+*.hdf
+*.h5
+
+# ==========================================
+# Data Directories
+# ==========================================
+
+# Raw, interim, and processed data
+data/raw/
+data/interim/
+data/processed/
+data/cache/
+data/metadata/
+
+# Course datasets
+Course-Datasets/
+
+# ==========================================
+# Cache Directories
+# ==========================================
+
 cache/
 .cache/
 __pycache__/

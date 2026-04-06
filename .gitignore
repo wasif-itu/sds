@@ -1,0 +1,156 @@
+# ==========================================
+# Large Geospatial & Data Files
+# ==========================================
+
+# Geospatial formats
+*.geojson
+*.gpkg
+*.tif
+*.tiff
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+
+# Raster/gridded data
+*.nc
+*.grd
+*.hdf
+*.h5
+
+# Archive formats
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# ==========================================
+# Data Directories (raw, interim, processed)
+# ==========================================
+
+# Bulk data folders
+/data/raw/
+/data/interim/
+/data/processed/
+/data/cache/
+/data/metadata/
+/data/
+
+# Per-project data directories
+**/data/raw/
+**/data/interim/
+**/data/processed/
+**/data/cache/
+**/data/metadata/
+
+# Course datasets
+/Course-Datasets/
+/course_datasets/
+
+# ==========================================
+# Cache & Temporary Files
+# ==========================================
+
+**/cache/
+.cache/
+.pytest_cache/
+.mypy_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ==========================================
+# Python
+# ==========================================
+
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+env.bak/
+venv.bak/
+.env
+.env.local
+
+# ==========================================
+# IDE & Editors
+# ==========================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# OS Files
+# ==========================================
+
+.DS_Store
+Thumbs.db
+.Thumbs.db
+
+# ==========================================
+# Temporary & Log Files
+# ==========================================
+
+*.tmp
+*.temp
+*.log
+*.xlsx
+*.xls
+
+# OS metadata
+.trashes
+.VolumeIcon.icns
+ehthumbs.db
+
+# ==========================================
+# Project-specific (optional)
+# ==========================================
+
+# Outputs and figures (keep code, ignore rendered)
+/outputs/
+/figures/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# Keep notebooks but not checkpoint caches
+!*.ipynb

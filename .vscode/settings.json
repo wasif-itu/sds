@@ -1,7 +1,16 @@
 {
-  "python.defaultInterpreterPath": "${env:HOME}/miniconda3/envs/sds/bin/python",
-  "python.condaPath": "${env:HOME}/miniconda3/bin/conda",
-  "python.terminal.activateEnvironment": true,
-  "jupyter.jupyterServerType": "local",
-  "jupyter.notebookFileRoot": "${workspaceFolder}"
+  "python.defaultInterpreterPath": "C:\\Users\\AtifA\\miniconda3\\envs\\sds\\python.exe", 
+  // Uses your 'sds' Conda environment as the default Python interpreter
+
+  "python.condaPath": "C:\\Users\\AtifA\\miniconda3\\Scripts\\conda.exe", 
+  // Points VS Code to the correct Conda executable on Windows
+
+  "python.terminal.activateEnvironment": true, 
+  // Automatically activates the selected environment when opening a terminal
+
+  "jupyter.jupyterServerType": "local", 
+  // Uses a local Jupyter server instead of connecting remotely
+
+  "jupyter.notebookFileRoot": "${workspaceFolder}" 
+  // Opens notebooks relative to the project folder
 }
