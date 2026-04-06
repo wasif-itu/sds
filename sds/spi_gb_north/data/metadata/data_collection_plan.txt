@@ -1,0 +1,160 @@
+DATA COLLECTION PLAN
+Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan
+
+1. PURPOSE
+This document defines the data required for the full project, the preferred acquisition order, how each dataset should be stored, and the quality checks needed before analysis.
+
+2. CORE DATASETS REQUIRED
+
+A. Administrative boundaries
+- Purpose: Define Tehsil-level units for all calculations and maps.
+- Source: GeoBoundaries ADM3 Pakistan or an equivalent authoritative Tehsil boundary layer.
+- Format: GeoJSON / Shapefile / GeoPackage.
+- Required fields: unique ID, Tehsil name, district, province/region, geometry.
+- Folder: data/raw/admin_boundaries/
+- Expected files:
+  - admin_boundaries_raw.*
+  - tehsil_lookup.csv
+- Notes: Must be cleaned, topologically valid, and projected to EPSG:32643 for analysis.
+
+B. Digital elevation model (DEM)
+- Purpose: Derive terrain ruggedness index (TRI) for scenic potential.
+- Source: SRTM DEM v3.0 (primary).
+- Backup option: Copernicus DEM or ASTER GDEM if voids are severe.
+- Format: GeoTIFF.
+- Folder: data/raw/dem/
+- Expected files:
+  - srtm_dem_raw.tif
+  - dem_mosaic.tif
+  - dem_clipped.tif
+  - tri_derived.tif
+- Notes: Reproject to EPSG:32643 and clip to study extent before TRI calculation.
+
+C. Land-cover data
+- Purpose: Extract forest cover, water bodies, and other surface classes.
+- Source: ESA WorldCover 2021.
+- Format: GeoTIFF.
+- Folder: data/raw/landcover/
+- Expected files:
+  - worldcover_2021_raw.tif
+  - worldcover_resampled_100m.tif
+  - forest_mask.tif
+  - water_mask.tif
+- Notes: Resample carefully; keep original class codes in metadata.
+
+D. Snow / ice extent
+- Purpose: Measure scenic presence of glaciers and persistent snow.
+- Source: MODIS seasonal snow products or Sentinel-2 classification.
+- Format: GeoTIFF or derived raster mask.
+- Folder: data/raw/snow_ice/
+- Expected files:
+  - snow_ice_source_raw.*
+  - snow_ice_mask.tif
+  - snow_ice_percentage_by_tehsil.csv
+- Notes: Use a consistent seasonal snapshot or multi-season average.
+
+E. Road network
+- Purpose: Compute accessibility index from road density and distance to roads.
+- Source: OpenStreetMap via OSMnx / Overpass API.
+- Format: GeoJSON / Shapefile / GeoPackage.
+- Folder: data/raw/roads/
+- Expected files:
+  - roads_primary_secondary_raw.geojson
+  - roads_filtered.geojson
+  - roads_projected.gpkg
+- Notes: Include only primary and secondary roads unless a later sensitivity test requires more classes.
+
+F. Study region support files
+- Purpose: Keep analysis reproducible and traceable.
+- Source: Manually created or extracted from the boundary layer.
+- Folder: data/raw/auxiliary/
+- Expected files:
+  - study_region_boundary.geojson
+  - tehsil_names_standardized.csv
+  - source_log.csv
+  - acquisition_notes.txt
+
+3. OPTIONAL BUT RECOMMENDED AUXILIARY DATA
+These are not required for the main analysis, but useful for interpretation or validation.
+- Protected areas layer
+- Tourism destination points
+- Population centers / settlement points
+- Night-time lights (VIIRS)
+- Hydrography / rivers / lakes if not fully captured in land cover
+
+4. ORGANIZED FOLDER STRUCTURE
+
+project root
+├── data/
+│   ├── raw/
+│   │   ├── admin_boundaries/
+│   │   ├── dem/
+│   │   ├── landcover/
+│   │   ├── roads/
+│   │   ├── snow_ice/
+│   │   └── auxiliary/
+│   ├── interim/
+│   ├── processed/
+│   ├── metadata/
+│   └── cache/
+└── outputs/
+    ├── maps/
+    ├── tables/
+    └── reports/
+
+5. STANDARD NAMING CONVENTION
+Use lowercase snake_case, no spaces, and include source/version/date where useful.
+Examples:
+- admin_boundaries_pakistan_adm3_geoboundaries.geojson
+- srtm_dem_v3_32643_clip.tif
+- worldcover_2021_32643_resampled_100m.tif
+- roads_osm_primary_secondary_32643.geojson
+- snow_ice_modis_2026_summer_mask.tif
+- tehsil_spi_ai_fullstudy.csv
+
+6. ACQUISITION ORDER
+Recommended sequence:
+1) Administrative boundaries
+2) DEM
+3) Land-cover data
+4) Road network
+5) Snow/ice data
+6) Auxiliary layers
+7) Metadata and source log
+
+7. PROCESSING PIPELINE AFTER DOWNLOAD
+For every dataset:
+- Verify CRS
+- Reproject to EPSG:32643
+- Clip to study region
+- Check geometry validity or raster nodata handling
+- Record source, download date, license, and processing steps
+- Store the cleaned version in data/interim/ or data/processed/
+
+8. QUALITY CONTROL CHECKLIST
+Before analysis, confirm:
+- Tehsil boundaries are complete and non-overlapping
+- Raster datasets cover the full study extent
+- Road network is filtered correctly
+- Snow/ice layer uses the intended season
+- All files have documented source and date
+- No missing CRS information
+- No unit mismatches in area or distance calculations
+
+9. OUTPUT FILES TO PREPARE AFTER DATA COLLECTION
+Store final analytical outputs in data/processed/:
+- tehsil_spi_fullstudy.geojson
+- tehsil_ai_fullstudy.geojson
+- tehsil_spi_ai_fullstudy.csv
+- lisa_clusters_fullstudy.geojson
+- priority_tehsils_fullstudy.csv
+- regression_summary_fullstudy.txt
+
+10. RECOMMENDED PROJECT RULE
+Do not overwrite raw data. Keep all downloads unchanged in data/raw/, and write all cleaned or derived files to data/interim/ or data/processed/.
+
+11. NEXT ACTIONS
+- Download boundary data first.
+- Build the source log.
+- Then collect DEM, land cover, roads, and snow/ice layers.
+- After that, run preprocessing and generate the analysis-ready dataset.

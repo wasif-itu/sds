@@ -1,0 +1,5 @@
+tehsils=81
+crs=EPSG:32643
+resolution=100.0m
+lc_tiles=3
+snow=deferred

@@ -1,0 +1,137 @@
+Project Title
+Spatial Disparity Between Natural Scenic Potential and Road Accessibility in Northern Pakistan: A Tehsil-Level Spatial Analysis
+Abstract
+Northern Pakistan, including Gilgit-Baltistan and Upper Khyber Pakhtunkhwa, contains some of the most important mountain landscapes in the country. These areas play a major role in tourism and local economic activity. However, infrastructure development is often concentrated along historically accessible corridors such as the Karakoram Highway, which may leave other high-potential regions underdeveloped. There is limited quantitative research that measures the spatial mismatch between natural scenic potential and transportation accessibility. This project aims to identify and analyze this disparity at the Tehsil (ADM3) level.
+The study is conceptually grounded in landscape and ecosystem service research. Scenic potential can be represented through objective physical landscape characteristics that contribute to visual and recreational value. Paracchini et al. (2014) demonstrate how measurable environmental indicators can be combined to map recreation potential at large spatial scales. Similarly, landscape assessment literature distinguishes between subjective perception and objective landscape features, supporting the use of quantifiable natural attributes in spatial modeling. Building on this foundation, this study constructs a composite Scenic Potential Index (SPI) using measurable environmental variables.
+The main research questions are:
+Does scenic potential exhibit significant global spatial autocorrelation across Tehsils?
+
+
+Which Tehsils are statistically significant “High Scenic–Low Accessibility” spatial outliers?
+
+
+Does spatial dependence influence the relationship between scenic potential and road accessibility?
+
+
+The unit of analysis will be approximately 60–80 Tehsils in the study region. The project integrates multiple spatial data structures. Administrative boundaries (vector polygons) will define the analysis units. ESA WorldCover raster data (10m, resampled to 100m) will be used to calculate percentage forest cover, water bodies, and snow/ice coverage through zonal statistics. A digital elevation model (SRTM) will be used to derive a Terrain Ruggedness Index instead of raw elevation, to better represent topographic variability. In addition, a Shannon Land Cover Diversity Index will be calculated to capture environmental heterogeneity. These standardized variables will be combined using Z-score normalization to construct the Scenic Potential Index (SPI).
+Accessibility will be measured using OpenStreetMap road network data. Road density (km per km²) and average distance to major highways, including the Karakoram Highway, will be calculated and standardized to form an Accessibility Index (AI).
+Exploratory Spatial Data Analysis (ESDA) will be conducted using choropleth maps and bivariate visualization. A Queen Contiguity spatial weight matrix will define neighborhood structure. Global Moran’s I will test spatial autocorrelation, while Local Indicators of Spatial Association (LISA) will identify clusters and spatial outliers. Finally, Ordinary Least Squares (OLS) and a Spatial Lag Model will be estimated to account for spatial dependence.
+The expected outcomes include a bivariate choropleth map highlighting scenic-accessibility inequality, a LISA cluster map identifying priority development areas, and a fully reproducible Python-based spatial analysis workflow. This study aims to provide a data-driven framework to support balanced regional planning and sustainable tourism development in Northern Pakistan.
+
+Dataset List for Project
+Administrative Boundaries (Tehsil Level – ADM3)
+ Source: GeoBoundaries
+ Type: Vector (Polygon Shapefile / GeoJSON)
+ Purpose:
+
+
+Unit of analysis (60–80 tehsils in GB and Upper KP)
+
+
+Required for zonal statistics
+
+
+Required for spatial weights matrix (Queen contiguity)
+
+
+Land Cover Data
+ Source: ESA WorldCover (10m resolution) – European Space Agency
+ Type: Raster
+ Purpose:
+
+
+Percentage forest cover per tehsil
+
+
+Percentage water bodies per tehsil
+
+
+Percentage snow and ice cover per tehsil
+
+
+Optional: Land cover diversity index
+
+
+Elevation Data
+ Source: SRTM DEM (30m) – NASA / USGS EarthExplorer
+ Type: Raster
+ Purpose:
+
+
+Calculate Terrain Ruggedness Index (TRI)
+ OR
+
+
+Standard deviation of elevation per tehsil
+ Note: Do not use raw elevation average. Use ruggedness or variability.
+
+
+Road Network Data
+ Source: OpenStreetMap (extracted using OSMnx in Python)
+ Type: Spatial Graph / Vector Lines
+ Purpose:
+
+
+Road density (km per square km)
+
+
+Primary and secondary roads only
+
+
+Distance to major highway
+
+
+Major Highway Reference
+ Source: OpenStreetMap
+ Specific Feature: Karakoram Highway
+ Type: Vector Line
+ Purpose:
+
+
+Distance from each tehsil centroid to Karakoram Highway
+
+
+Used in Accessibility Index
+
+
+Optional (Only if Time Allows)
+Night-Time Lights Data
+ Source: VIIRS Nighttime Lights – NASA
+ Type: Raster
+ Purpose:
+
+
+Mean light intensity per tehsil
+
+
+Used as development proxy (not tourism popularity)
+
+
+Minimum Required Datasets (Core Only)
+GeoBoundaries ADM3
+
+
+ESA WorldCover
+
+
+SRTM DEM
+
+
+OpenStreetMap Roads
+
+
+These four datasets are enough to build:
+Scenic Potential Index
+
+
+Accessibility Index
+
+
+Moran’s I
+
+
+LISA Cluster Map
+
+
+Spatial Regression Model
+

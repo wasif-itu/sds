@@ -1,0 +1,7 @@
+tehsils_selected=81
+target_crs=EPSG:32643
+target_resolution_m=100.0
+landcover_tiles_merged=3
+snow_ice_status=deferred
+outputs_geojson=/home/wasif/sds/sds/spi_gb_north/data/processed/tehsil_spi_ai_fullstudy.geojson
+outputs_csv=/home/wasif/sds/sds/spi_gb_north/data/processed/tehsil_spi_ai_fullstudy.csv

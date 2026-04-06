@@ -1,0 +1,5 @@
+commands
+
+source onlygeopandas/bin/activate
+
+code sds.code-workspace

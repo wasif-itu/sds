@@ -1,0 +1,117 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf-8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+% Set line spacing
+\onehalfspacing
+
+% Title and Author
+\title{Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan:\\
+A Tehsil-Level Spatial Analysis}
+\author{}
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem Statement}
+
+Northern Pakistan (Gilgit-Baltistan and Upper Khyber Pakhtunkhwa) contains globally significant mountain landscapes but exhibits uneven tourism development. Infrastructure is concentrated along major corridors (e.g., Karakoram Highway), while potentially high-scenic regions remain remote and underdeveloped. Despite tourism's economic importance, no quantitative, spatially explicit framework systematically identifies disparities between scenic potential and accessibility at the Tehsil (sub-district) scale.
+
+\section{Research Questions}
+
+\begin{enumerate}
+    \item Where are statistically significant clusters and spatial outliers of scenic potential located?
+    \item Which Tehsils represent ``High Scenic--Low Accessibility'' priority regions for targeted development?
+    \item Does accessibility meaningfully predict scenic potential variation across the region?
+\end{enumerate}
+
+\noindent\textbf{Significance:} Evidence-based answers support sustainable tourism planning, conservation prioritization, and balanced regional development policy.
+
+\section{Methodology}
+
+\subsection{Study Design}
+
+Spatial analysis of 60--80 Tehsils using composite indices and local spatial clustering methods.
+
+\subsection{Scenic Potential Index (SPI)}
+
+Composite indicator combining z-score normalized components:
+\begin{itemize}
+    \item Terrain Ruggedness Index (SRTM 30m DEM; 40\% weight): Topographic complexity
+    \item Forest cover (ESA WorldCover 2021; 25\% weight): Vegetation character
+    \item Water bodies (ESA WorldCover; 20\% weight): Hydrological features
+    \item Snow/Ice coverage (MODIS/Sentinel-2; 15\% weight): Glacier/peak aesthetics
+\end{itemize}
+
+\noindent\textbf{Formula:}
+\[
+\text{SPI} = 0.4 \times Z(\text{TRI}) + 0.25 \times Z(\text{Forest}) + 0.2 \times Z(\text{Water}) + 0.15 \times Z(\text{Snow})
+\]
+
+\subsection{Accessibility Index (AI)}
+
+\[
+\text{AI} = 0.5 \times Z(\text{Road Density}) - 0.5 \times Z(\text{Distance to Roads})
+\]
+
+Components derived from OpenStreetMap road network (primary/secondary roads only).
+
+\subsection{Data Sources}
+
+All free and open-access:
+\begin{itemize}
+    \item Administrative boundaries: GeoBoundaries ADM3 (Pakistan, 554 units)
+    \item Elevation: SRTM DEM v3.0 (USGS)
+    \item Land cover: ESA WorldCover 2021
+    \item Road network: OpenStreetMap via OSMnx
+    \item Snow extent: MODIS or Sentinel-2
+\end{itemize}
+
+\subsection{Spatial Analysis Techniques}
+
+\begin{itemize}
+    \item Queen contiguity weights matrix (row-standardized)
+    \item Global Moran's $I$ test (spatial autocorrelation)
+    \item Local Indicators of Spatial Association (LISA) for cluster identification (HH, LL, HL, LH classifications)
+    \item Ordinary Least Squares regression: $\text{SPI} \sim \text{AI}$
+    \item Conditional spatial lag model (if $n > 30$ and residual autocorrelation detected)
+\end{itemize}
+
+\subsection{Implementation}
+
+Python with open-source libraries (geopandas, rasterio, libpysal, esda, scikit-learn). Reproducible Jupyter notebook workflow with persistent caching of external data.
+
+\section{Objectives}
+
+\begin{enumerate}
+    \item Develop reproducible, open-source framework for measuring scenic potential and accessibility in mountain regions.
+    \item Identify statistically significant high-scenic/low-accessibility Tehsils (realistic expectation: 5--15 units among 60--80).
+    \item Quantify spatial association between accessibility and scenic potential; evaluate causal mechanisms.
+    \item Provide evidence-based guidance for sustainable tourism and conservation planning.
+\end{enumerate}
+
+\section{Expected Outcomes}
+
+\begin{enumerate}
+    \item Tehsil-level SPI and AI datasets with geospatial visualization
+    \item LISA cluster maps identifying scenic concentration areas and spatial outliers
+    \item Regression model quantifying accessibility-scenery association
+    \item Priority region identification for development feasibility assessment
+    \item Fully reproducible Python workflow applicable to other mountain regions
+    \item Technical report (5--10 pages) with findings and policy recommendations
+\end{enumerate}
+
+\section{Proof of Concept}
+
+Pilot study (March 2026) on Gilgit region validated all methodological components. Results: strong local LISA clustering (2 HH clusters, 7 LL clusters), strong accessibility-scenery association ($R^2 \approx 0.85$, small-sample estimate), and identification of priority regions (e.g., Shigar). Workflow fully reproducible.
+
+\end{document}

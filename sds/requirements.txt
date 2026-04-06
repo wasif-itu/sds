@@ -1,0 +1,15 @@
+shapely
+pandas
+numpy
+scipy
+scikit-learn
+geopandas
+rioxarray
+xarray
+fiona
+osmnx
+datashader
+contextily
+matplotlib
+seaborn
+pysal

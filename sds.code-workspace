@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${env:HOME}/miniconda3/envs/sds/bin/python",
+    "python.condaPath": "${env:HOME}/miniconda3/bin/conda",
+    "python.terminal.activateEnvironment": true,
+    "jupyter.jupyterServerType": "local",
+    "jupyter.notebookFileRoot": "${workspaceFolder}"
+  }
+}

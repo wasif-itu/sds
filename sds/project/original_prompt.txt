@@ -1,0 +1,12 @@
+I am beginning a semester project titled "Spatial Disparity Between Natural Scenic Potential and Road Accessibility in Northern Pakistan: A Tehsil-Level Spatial Analysis". I have provided an initial proposal document (`project/proposal.txt`) detailing the context, data requirements, and methodology, along with a Jupyter notebook (`project/project_poc.ipynb`) that we will use for coding.
+
+Your task is to conduct a Proof of Concept (PoC) to evaluate the feasibility of this project before I commit to the full study. Please execute the following workflow:
+
+1. **Review the Proposal**: Read `proposal.txt` to thoroughly understand the project's analytical objectives. Identify the specific datasets required, which include GeoBoundaries (ADM3), OpenStreetMap road networks, Elevation data (SRTM or Copernicus GLO-30 DEM), and Land Cover data (ESA WorldCover 10m).
+2. **Draft an Implementation Plan**: Write a comprehensive, step-by-step plan detailing how we will verify the existence, programmatic accessibility, and data quality of these specific datasets. The plan should break the PoC down into logical phases (e.g., Data Acquisition, Processing Feasibility, Spatial Matrix initialization). 
+3. **Execute the Proof of Concept**: Write Python code directly into `project_poc.ipynb` to test the data acquisition. Your code should:
+   - Use standard Python libraries (`geopandas`, `osmnx`, `rasterio`, `requests`) to dynamically fetch the data.
+   - Utilize STAC catalog endpoints (like the Planetary Computer API) to access large rasters without downloading entire global datasets.
+   - Validate that the data can be filtered or masked specifically to a sample Tehsil in Northern Pakistan (e.g., Gilgit).
+   - Visualize the downloaded geometries and rasters to prove the data is valid and correctly projected.
+4. **Document Findings**: After execution, formulate a final report summarizing whether the required data is accessible and if the project is computationally feasible using the proposed methods.

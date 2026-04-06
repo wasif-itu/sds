@@ -1,0 +1,117 @@
+PREPROCESSING PLAN
+Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan
+
+DATE
+2026-04-05
+
+SCOPE UPDATE
+- Land cover source is treated as 2024 data.
+- Snow/ice processing is deferred for this phase.
+- SPI is computed as a no-snow interim index using TRI, forest, and water only.
+
+GOAL
+Prepare analysis-ready tehsil-level inputs (SPI components and AI components) from raw data and store reproducible outputs in interim and processed folders.
+
+INPUTS (CURRENT FILES)
+- Tehsil boundaries: data/raw/admin_boundaries/geoBoundaries-PAK-ADM3.geojson
+- DEM: data/raw/dem/dem.tif
+- Land cover tiles: data/raw/landcover/landcover1.tif, landcover2.tif, landcover3.tif
+- Roads dataset: data/raw/roads/spi_gb_north.gpkg
+- Study clip boundary: data/raw/roads/clipping_boundary.geojson
+
+KEY PREPROCESSING DECISIONS
+1. Study extent
+- Use clipping_boundary.geojson as the operational study boundary.
+- Reason: the auto-generated study_region_boundary currently covers all Pakistan.
+
+2. Coordinate reference system
+- Standardize all analysis outputs to EPSG:32643.
+- Use meter-based units for area, length, and distance metrics.
+
+3. Target raster grid
+- Use 100 m analysis grid for integrated raster operations.
+- Reproject DEM and selected land cover to this common grid.
+
+4. Land cover tile selection
+- Auto-select the tile with maximum overlap with study boundary.
+- For current data, landcover3.tif (EPSG:32643) is expected to be selected.
+
+5. Roads filtering
+- Keep only LineString/MultiLineString features.
+- Keep only primary and secondary classes based on the highway field.
+
+PREPROCESSING WORKFLOW
+1. Boundaries
+- Load ADM3 boundaries and fix invalid geometries.
+- Subset tehsils that intersect study boundary.
+- Reproject to EPSG:32643.
+- Save: data/interim/tehsils_north_32643.gpkg
+
+2. DEM and TRI
+- Reproject DEM to 100 m grid in EPSG:32643.
+- Clip/mask to study boundary.
+- Derive TRI (neighbor-based terrain variability).
+- Save:
+  - data/interim/dem_32643_100m_clip.tif
+  - data/interim/tri_derived_32643_100m.tif
+
+3. Land cover (2024)
+- Select best-overlap 2024 tile.
+- Reproject to 100 m grid in EPSG:32643.
+- Clip/mask to study boundary.
+- Build class masks:
+  - Forest = class 10
+  - Water = class 80
+- Save:
+  - data/interim/worldcover_2024_32643_resampled_100m.tif
+  - data/interim/forest_mask_2024_32643_100m.tif
+  - data/interim/water_mask_2024_32643_100m.tif
+
+4. Roads and accessibility rasters
+- Read roads GPKG and filter to primary/secondary lines.
+- Reproject to EPSG:32643 and clip to study boundary.
+- Rasterize roads to analysis grid.
+- Compute Euclidean distance-to-roads raster.
+- Save:
+  - data/interim/roads_primary_secondary_32643.gpkg
+  - data/interim/distance_to_roads_32643_100m.tif
+
+5. Tehsil-level zonal metrics
+- Compute per-tehsil:
+  - TRI mean
+  - Forest percentage
+  - Water percentage
+  - Mean distance to roads
+  - Road length and road density (km/km2)
+
+6. Index construction (phase 1, no snow)
+- SPI interim formula:
+  SPI_no_snow = (0.4*Z(TRI) + 0.25*Z(Forest) + 0.2*Z(Water)) / 0.85
+- AI formula:
+  AI = 0.5*Z(RoadDensity) - 0.5*Z(DistanceToRoads)
+
+7. Processed outputs
+- data/processed/tehsil_spi_ai_fullstudy.geojson
+- data/processed/tehsil_spi_ai_fullstudy.csv
+- data/metadata/preprocessing_run_summary.txt
+
+QUALITY CHECKS
+- CRS check: all analysis layers in EPSG:32643.
+- Geometry check: no empty/invalid tehsil geometries after cleaning.
+- Coverage check: raster outputs fully cover clipping boundary.
+- Roads check: only primary/secondary roads included.
+- Null check: inspect tehsils with missing TRI or land cover metrics.
+- Units check:
+  - road_density_km_per_km2 in km/km2
+  - dist_to_roads_mean_m in meters
+
+CURRENT LIMITATION AND NEXT PHASE
+- Snow/ice is excluded by design in this run.
+- When snow/ice data is ready, add:
+  - snow_ice_mask_*.tif
+  - snow_ice_pct per tehsil
+  - full SPI formula including +0.15*Z(SnowIce)
+
+EXECUTION COMMAND
+From repository root:
+/home/wasif/miniconda3/envs/sds/bin/python spi_gb_north/scripts/preprocess_full_study.py

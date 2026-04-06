@@ -1,0 +1,80 @@
+# Large geospatial data files
+*.geojson
+*.gpkg
+*.tif
+*.tiff
+
+# Cache directories
+cache/
+.cache/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment
+.env
+.env.local
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Large data files that might exist
+*.zip
+*.tar.gz
+*.7z
+*.rar
+
+# CSV/Excel files (optional - uncomment if needed)
+# *.csv
+# *.xlsx
+# *.xls
