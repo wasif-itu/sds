@@ -1,0 +1,41 @@
+Spatial Disparity Analysis Explained in Simple Words
+
+What this analysis asked
+- Are scenic places clustered together?
+- Are accessible places clustered together?
+- Which tehsils look scenic but still have relatively poor access?
+- Does accessibility help explain scenic potential once we account for spatial patterns?
+
+What the results say
+- Scenic potential is strongly clustered in space. Moran's I for SPI was 0.755 with p=0.001, which means nearby tehsils tend to have similar scenic scores.
+- Accessibility is also strongly clustered. Moran's I for AI was 0.668 with p=0.001, so road access is not random either.
+- The mismatch between scenery and access is even more clustered. Moran's I for the scenic-access gap was 0.797 with p=0.001. In simple words, the study area has clear pockets where beautiful places are consistently less accessible than surrounding areas.
+- The preferred spatial regression model was spatial lag, which means ordinary regression alone was not enough; nearby tehsils influence one another.
+- The analysis identified 34 tehsils as high-scenic and low-access priority areas.
+
+What this means practically
+- Northern Pakistan does not have an even spread of scenic opportunity and road access.
+- Some scenic corridors are already well connected, but several highly scenic tehsils remain relatively underserved.
+- These underserved scenic tehsils are good candidates for closer planning attention, especially for tourism access, basic infrastructure, and service delivery.
+- Because the results are spatially clustered, planning individual tehsils in isolation would miss the broader regional pattern.
+
+Priority tehsils highlighted by the model
+- CHITRAL: SPI 0.77, AI -2.14, gap 3.58
+- KANDIA: SPI 0.82, AI -1.93, gap 3.42
+- GOJAL: SPI 1.21, AI -1.18, gap 3.22
+- GUPIS: SPI 0.85, AI -1.65, gap 3.15
+- MASTUJ: SPI 0.93, AI -1.33, gap 2.93
+- ISHKOMEN: SPI 0.95, AI -1.29, gap 2.92
+- RONDU: SPI 0.88, AI -1.23, gap 2.74
+- SHIGAR: SPI 0.71, AI -1.47, gap 2.73
+- NAGAR-II: SPI 0.83, AI -1.20, gap 2.63
+- ALIABAD: SPI 1.25, AI -0.51, gap 2.53
+
+How stable the SPI is
+- The sensitivity analysis showed the index is fairly stable under alternative weights.
+- The strongest alternative scenario had Spearman correlation 0.997 against the baseline SPI and a top-10 overlap of 9.
+- In simple words, the broad ranking of scenic places does not change dramatically when the component weights are adjusted moderately.
+
+Bottom line
+- The results support the project idea: scenic potential and accessibility are related, but not evenly matched.
+- The main policy-relevant finding is not just where the most scenic places are, but where scenic potential is high and access is still comparatively weak.

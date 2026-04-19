@@ -1,0 +1,37 @@
+{
+  "rows": 81,
+  "priority_count": 34,
+  "selected_model": "spatial_lag",
+  "residual_moran": {
+    "moran_i": 0.48918233832593,
+    "expected_i": -0.0125,
+    "z_score": 6.953842170662242,
+    "p_value": 0.001
+  },
+  "global_moran": [
+    {
+      "variable": "SPI (snow-inclusive)",
+      "n": 81,
+      "moran_i": 0.7547242007895042,
+      "expected_i": -0.0125,
+      "z_score": 10.591518931323018,
+      "p_value": 0.001
+    },
+    {
+      "variable": "Accessibility",
+      "n": 81,
+      "moran_i": 0.6676256782652824,
+      "expected_i": -0.0125,
+      "z_score": 9.251737390954887,
+      "p_value": 0.001
+    },
+    {
+      "variable": "Gap (SPI - AI)",
+      "n": 81,
+      "moran_i": 0.7973484763443255,
+      "expected_i": -0.0125,
+      "z_score": 10.536344798043505,
+      "p_value": 0.001
+    }
+  ]
+}

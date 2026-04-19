@@ -1,70 +1,22 @@
-Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan
-PROBLEM STATEMENT
-Northern Pakistan's mountain landscapes (Gilgit-Baltistan, Upper Khyber Pakhtunkhwa) 
-offer significant tourism potential but face infrastructure disparities. Road networks 
-concentrate along accessible corridors like the Karakoram Highway, leaving high-scenic 
-regions underdeveloped. This creates spatial mismatches between natural beauty and 
-transport access, hindering sustainable tourism and conservation efforts.
-Key challenges:
-- Uneven development: Accessible areas attract infrastructure, potentially overlooking 
-  remote scenic hotspots
-- Data gaps: Lack of systematic analysis linking terrain, vegetation, and accessibility
-- Policy needs: Evidence-based prioritization for tourism investment and conservation zoning
-Research questions:
-1. Where are scenic potential clusters and accessibility outliers?
-2. Which tehsils are "high-scenic, low-access" priority regions?
-3. How does accessibility predict scenic variation?
-METHODOLOGY
-**Scenic Potential Index (SPI):**
-SPI = w_tpi × Z(TPI) + w_forest × Z(Forest %) + w_water × Z(Water %) + w_snow × Z(Snow/Ice %)
+Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan 497 words
+Gilgit-Baltistan & Upper Khyber Pakhtunkhwa  ·  Open-source Python  ·  13–17 days
 
-- Components: Topographic Position Index (TPI), forest cover, water bodies, snow/ice
-- Weights (w_tpi, w_forest, w_water, w_snow): User-tunable parameters
-- TPI computation: Vectorized focal mean (300m neighborhood), z-score standardization, 
-  landform classification (ridges/valleys/flat areas)
-- Data sources: SRTM DEM (30m), ESA WorldCover (10m), MODIS snow, reprojected to EPSG:32643 (100m grid)
+Problem
+Northern Pakistan's mountain landscapes contain globally significant scenic resources yet lack systematic spatial analysis linking terrain character to infrastructure distribution. Road networks concentrate along accessible corridors such as the Karakoram Highway, creating measurable mismatches between scenic potential and transport access. These mismatches have direct consequences for tourism investment prioritization, conservation zoning, and regional development equity. No tehsil-scale evidence base currently exists to guide policy in this gap.
 
-**Accessibility Index (AI):**
-AI = 0.5 × Z(Road Density) - 0.5 × Z(Distance to Roads)
-- Road density: Primary/secondary roads from OpenStreetMap (OSMnx)
-- Distance: Euclidean from tehsil centroids
+Research questions
+Three questions frame the study: (1) Where do statistically significant scenic potential clusters and accessibility outliers occur at tehsil scale? (2) Which tehsils exhibit high-scenic, low-accessibility profiles as identified through LISA spatial outlier analysis? (3) To what extent does spatial accessibility predict scenic variation after controlling for spatial autocorrelation in residuals?
 
-**Spatial Analysis:**
-- Global autocorrelation: Moran's I (SPI, AI)
-- Local clustering: LISA (Moran's Local Indicators of Spatial Association)
-- Regression: OLS (SPI ~ AI) with diagnostics
-- Weights matrix: Queen contiguity (first-order neighbors)
+Methodology
+Scenic Potential Index (SPI) operationalizes visual landscape quality through four biophysical components validated in mountain landscape preference literature — terrain relief, forest cover, surface water, and snow/ice extent — each standardized and combined with equal weights as the absence of Pakistan-specific preference surveys precludes empirical weighting:
 
-**Workflow:**
-1. Data preprocessing and alignment (EPSG:32643, 100m)
-2. TPI/SPI computation and zonal statistics
-3. AI calculation and spatial weights
-4. Autocorrelation, LISA, and regression analysis
-5. Sensitivity testing with alternative SPI weights
-RESULTS/EXPECTED OUTCOMES
-**Scientific Outputs:**
-- Choropleth maps: SPI hotspots, AI gaps, LISA clusters/outliers
-- Priority regions: 5-15 tehsils identified as high-scenic, low-access opportunities
-- Regression results: R² ≈ 0.85 (PoC), quantifying accessibility-scenic relationship
-- LISA classification: Spatial organization of scenic potential (HH/LL clusters, HL/LH outliers)
+SPI = 0.25·Z(TPI) + 0.25·Z(Forest%) + 0.25·Z(Water%) + 0.25·Z(Snow/Ice%)
+Topographic Position Index uses a 300m focal mean on SRTM 30m DEM with landform classification following Weiss (2001). Terrain ruggedness is computed per Riley et al. (1999). Forest and water cover derive from ESA WorldCover (10m); snow/ice from MODIS MOD10A2 (500m native, treated as binary presence at tehsil level via zonal statistics — resolution mismatch is acknowledged as a limitation). All layers are reprojected to EPSG:32643 at 100m.
 
-**Practical Applications:**
-- Tourism development: Target infrastructure in remote scenic areas
-- Conservation planning: Protect high-value regions with limited access
-- Regional planning: Balanced development avoiding over-concentration on accessible corridors
+Accessibility Index replaces Euclidean distance with least-cost path distance over a slope-derived friction surface from the same DEM, addressing the fundamental terrain-barrier problem that flat-space distance measures cannot capture in this landscape:
 
-**Deliverables:**
-- Reproducible Jupyter notebooks and Python scripts
-- Publication-quality maps (PNG/PDF) and statistical tables
-- Geospatial data (GeoJSON) for GIS integration
-- Technical report with findings and recommendations
+AI = 0.5·Z(Road Density) − 0.5·Z(Cost-Distance to Roads)
+OSM primary and secondary roads (OSMnx) provide the road network. Coverage gaps in remote tehsils are treated as lower bounds on inaccessibility, not precise measurements. Spatial analysis proceeds as: Global Moran's I for SPI and AI independently; LISA (Anselin 1995) with queen contiguity weights for cluster and outlier mapping (HH/LL clusters, HL/LH outliers); OLS regression (SPI ~ AI) with Moran's I residual diagnostic; Lagrange Multiplier tests to select between spatial lag and spatial error specifications (Anselin 1988); final coefficient estimates from the spatially-corrected model. Sensitivity analysis perturbs SPI weights by ±0.15 to test index stability. Study area covers 60–80 tehsils across Gilgit-Baltistan and upper KP. Findings will identify priority regions for evidence-based infrastructure investment while acknowledging that spatial opportunity analysis does not substitute for participatory planning with affected communities.
 
-**Validation (PoC):**
-- 12 tehsils analyzed; TPI successfully implemented with landform classification
-- Data alignment resolved (snow reprojected EPSG:4326→32643)
-- Strong accessibility-scenic correlation confirmed
-- Full study (60-80 tehsils) expected to yield robust, scalable results
-
-Timeline: 10-14 days | Cost: Researcher time only | Tools: Open-source Python ecosystem
-
-END OF CONCISE PROPOSAL
+Deliverables
+Reproducible Jupyter notebooks; choropleth maps of SPI, AI, and LISA clusters; spatial regression output tables; GeoJSON data for GIS integration; technical report with policy recommendations.

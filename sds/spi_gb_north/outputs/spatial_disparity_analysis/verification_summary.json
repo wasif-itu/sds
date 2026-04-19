@@ -1,0 +1,61 @@
+{
+  "rows": 81,
+  "priority_count": 34,
+  "selected_model": "spatial_lag",
+  "spi_source": "merged_from_tehsil_spi_ai.csv",
+  "global_moran": [
+    {
+      "variable": "SPI (snow-inclusive)",
+      "n": 81,
+      "moran_i": 0.7547242007895042,
+      "expected_i": -0.0125,
+      "z_score": 10.591518931323018,
+      "p_value": 0.001
+    },
+    {
+      "variable": "Accessibility",
+      "n": 81,
+      "moran_i": 0.6676256782652824,
+      "expected_i": -0.0125,
+      "z_score": 9.251737390954887,
+      "p_value": 0.001
+    },
+    {
+      "variable": "Gap (SPI - AI)",
+      "n": 81,
+      "moran_i": 0.7973484763443255,
+      "expected_i": -0.0125,
+      "z_score": 10.536344798043505,
+      "p_value": 0.001
+    }
+  ],
+  "top_priority_tehsils": [
+    "HATTIAN BALA",
+    "ATHUMQAM",
+    "ASTORE",
+    "CHILAS",
+    "DAREL TANGIR",
+    "KHAPLU",
+    "MASHABRUM",
+    "GUPIS",
+    "ISHKOMEN",
+    "PUNIAL"
+  ],
+  "verified_outputs": {
+    "enriched_geojson": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\tehsil_spatial_analysis.geojson",
+    "enriched_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\tehsil_spatial_analysis.csv",
+    "global_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\global_moran_summary.csv",
+    "lm_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\lm_tests.csv",
+    "ols_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\ols_coefficients.csv",
+    "spatial_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\spatial_model_coefficients.csv",
+    "sensitivity_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\sensitivity_analysis.csv",
+    "priority_csv": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\priority_tehsils.csv",
+    "summary_json": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\analysis_summary.json",
+    "model_txt": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\spatial_model_summary.txt",
+    "choropleths": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\analysis_choropleths.png",
+    "lisa_maps": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\analysis_lisa_maps.png",
+    "regression_plot": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\analysis_regression_diagnostics.png",
+    "sensitivity_plot": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\analysis_sensitivity.png",
+    "simple_results_text": "C:\\Users\\AtifA\\Desktop\\Wasif SDS Project\\sds\\sds\\spi_gb_north\\outputs\\spatial_disparity_analysis\\spatial_disparity_results_explained.txt"
+  }
+}

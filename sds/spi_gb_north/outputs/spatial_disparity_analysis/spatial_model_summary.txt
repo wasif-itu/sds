@@ -1,0 +1,29 @@
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: MAXIMUM LIKELIHOOD SPATIAL LAG (METHOD = FULL)
+------------------------------------------------------------------------------------
+Data set            :     unknown
+Weights matrix      :     unknown
+Dependent Variable  :         spi                Number of Observations:          81
+Mean dependent var  :     -0.0000                Number of Variables   :           3
+S.D. dependent var  :      0.6368                Degrees of Freedom    :          78
+Pseudo R-squared    :      0.7476
+Spatial Pseudo R-squared:  0.5071
+Log likelihood      :    -29.8274
+Sigma-square ML     :      0.1034                Akaike info criterion :      65.655
+S.E of regression   :      0.3215                Schwarz criterion     :      72.838
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     z-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT         0.00487         0.03572         0.13634         0.89155
+                  ai        -0.14386         0.04525        -3.17928         0.00148
+               W_spi         0.73870         0.06877        10.74214         0.00000
+------------------------------------------------------------------------------------
+
+SPATIAL LAG MODEL IMPACTS
+Impacts computed using the 'simple' method.
+            Variable         Direct        Indirect          Total
+                  ai        -0.1439         -0.4067         -0.5506
+================================ END OF REPORT =====================================
