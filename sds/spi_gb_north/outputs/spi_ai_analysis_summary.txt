@@ -1,0 +1,32 @@
+SCENIC POTENTIAL & ACCESSIBILITY ANALYSIS - SUMMARY REPORT
+============================================================
+
+STUDY AREA:
+  • Total area: 0.0 km²
+  • Number of tehsils: 81
+  • Coordinate system: EPSG:32643 (UTM Zone 43N)
+  • Resolution: 100m × 100m grid
+
+SPI RESULTS:
+  • SPI Range: [-1.232, 6.349]
+  • SPI Mean: 0.000
+  • SPI Std Dev: 0.512
+
+AI RESULTS:
+  • AI Range: [0.000, 1.000]
+  • AI Mean: 0.785
+  • AI Std Dev: 0.176
+
+TOP 5 TEHSILS BY SPI:
+  • Zone_39: 0.378
+  • Zone_52: 0.255
+  • Zone_32: 0.241
+  • Zone_71: 0.212
+  • Zone_56: 0.201
+
+TOP 5 TEHSILS BY AI:
+  • Zone_11: 0.982
+  • Zone_15: 0.982
+  • Zone_14: 0.978
+  • Zone_74: 0.976
+  • Zone_49: 0.976

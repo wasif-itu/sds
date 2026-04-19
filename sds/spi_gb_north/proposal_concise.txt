@@ -1,0 +1,70 @@
+Spatial Disparity Between Scenic Potential and Road Accessibility in Northern Pakistan
+PROBLEM STATEMENT
+Northern Pakistan's mountain landscapes (Gilgit-Baltistan, Upper Khyber Pakhtunkhwa) 
+offer significant tourism potential but face infrastructure disparities. Road networks 
+concentrate along accessible corridors like the Karakoram Highway, leaving high-scenic 
+regions underdeveloped. This creates spatial mismatches between natural beauty and 
+transport access, hindering sustainable tourism and conservation efforts.
+Key challenges:
+- Uneven development: Accessible areas attract infrastructure, potentially overlooking 
+  remote scenic hotspots
+- Data gaps: Lack of systematic analysis linking terrain, vegetation, and accessibility
+- Policy needs: Evidence-based prioritization for tourism investment and conservation zoning
+Research questions:
+1. Where are scenic potential clusters and accessibility outliers?
+2. Which tehsils are "high-scenic, low-access" priority regions?
+3. How does accessibility predict scenic variation?
+METHODOLOGY
+**Scenic Potential Index (SPI):**
+SPI = w_tpi × Z(TPI) + w_forest × Z(Forest %) + w_water × Z(Water %) + w_snow × Z(Snow/Ice %)
+
+- Components: Topographic Position Index (TPI), forest cover, water bodies, snow/ice
+- Weights (w_tpi, w_forest, w_water, w_snow): User-tunable parameters
+- TPI computation: Vectorized focal mean (300m neighborhood), z-score standardization, 
+  landform classification (ridges/valleys/flat areas)
+- Data sources: SRTM DEM (30m), ESA WorldCover (10m), MODIS snow, reprojected to EPSG:32643 (100m grid)
+
+**Accessibility Index (AI):**
+AI = 0.5 × Z(Road Density) - 0.5 × Z(Distance to Roads)
+- Road density: Primary/secondary roads from OpenStreetMap (OSMnx)
+- Distance: Euclidean from tehsil centroids
+
+**Spatial Analysis:**
+- Global autocorrelation: Moran's I (SPI, AI)
+- Local clustering: LISA (Moran's Local Indicators of Spatial Association)
+- Regression: OLS (SPI ~ AI) with diagnostics
+- Weights matrix: Queen contiguity (first-order neighbors)
+
+**Workflow:**
+1. Data preprocessing and alignment (EPSG:32643, 100m)
+2. TPI/SPI computation and zonal statistics
+3. AI calculation and spatial weights
+4. Autocorrelation, LISA, and regression analysis
+5. Sensitivity testing with alternative SPI weights
+RESULTS/EXPECTED OUTCOMES
+**Scientific Outputs:**
+- Choropleth maps: SPI hotspots, AI gaps, LISA clusters/outliers
+- Priority regions: 5-15 tehsils identified as high-scenic, low-access opportunities
+- Regression results: R² ≈ 0.85 (PoC), quantifying accessibility-scenic relationship
+- LISA classification: Spatial organization of scenic potential (HH/LL clusters, HL/LH outliers)
+
+**Practical Applications:**
+- Tourism development: Target infrastructure in remote scenic areas
+- Conservation planning: Protect high-value regions with limited access
+- Regional planning: Balanced development avoiding over-concentration on accessible corridors
+
+**Deliverables:**
+- Reproducible Jupyter notebooks and Python scripts
+- Publication-quality maps (PNG/PDF) and statistical tables
+- Geospatial data (GeoJSON) for GIS integration
+- Technical report with findings and recommendations
+
+**Validation (PoC):**
+- 12 tehsils analyzed; TPI successfully implemented with landform classification
+- Data alignment resolved (snow reprojected EPSG:4326→32643)
+- Strong accessibility-scenic correlation confirmed
+- Full study (60-80 tehsils) expected to yield robust, scalable results
+
+Timeline: 10-14 days | Cost: Researcher time only | Tools: Open-source Python ecosystem
+
+END OF CONCISE PROPOSAL
